@@ -32,5 +32,4 @@ endmodule
 /*if (operacion == "add") {
     opcode == 000000
     function = 100000
-    Prueba de edicion e archivos en el repositoria
 } */
