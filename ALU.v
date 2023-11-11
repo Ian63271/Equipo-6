@@ -28,8 +28,3 @@ end
 assign ZF = (resultado == 0) ? 1 : 0;
 
 endmodule
-
-/*if (operacion == "add") {
-    opcode == 000000
-    function = 100000
-} */
