@@ -24,7 +24,7 @@ wire [3:0]C4;
 wire [31:0]C5;
 reg [31:0]MUX;
 wire regwrite;
-wire ALUop;
+wire [1:0]ALUop;
 wire memwrite;
 wire memread;
 wire memreg;
@@ -33,6 +33,7 @@ ControlUnit CU (
     .opcode(OP),
     .RegWrite(regwrite),
     .MemToWrite(memwrite),
+    .MemToRead(memread),
     .MemToReg(memreg),
     .ALUOp(ALUop)
 );
