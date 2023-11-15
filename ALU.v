@@ -17,7 +17,7 @@ always @(*) begin
         4'b0110:
         resultado = OP1 - OP2;
         4'b0111:
-        resultado = OP1 < OP2 ? 1 : 0;
+        resultado = (OP1 < OP2);
         4'b1100:
         resultado = ~(OP1 | OP2);
         default:
@@ -25,6 +25,6 @@ always @(*) begin
     endcase
 end
 
-assign ZF = (resultado == 0) ? 1 : 0;
+assign ZF = (resultado == 0);
 
 endmodule
