@@ -26,3 +26,5 @@ truncado = '\n'.join(dividido)
 
 with open('output.txt', 'w') as f:
     f.write(truncado)
+
+print(instruccion)
