@@ -1,15 +1,14 @@
 module Adder(
-    input[31:0] pcsum, //cuantos bits se supone que entran? 32?
-    
+    input [31:0] pcsum, // ¿Cuántos bits se supone que entran? 32?
     output reg suma
 );
 
-wire[3:0] sig, ///??? wire o reg?
+reg [3:0] sig; 
 
-assign sig = 4'b4;
+assign sig = 4'b0100; 
 
 always @(*) begin
-assign suma = pcsum + sig;
+    suma = pcsum + sig;
 end
 
 endmodule
