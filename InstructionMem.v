@@ -1,19 +1,12 @@
-module InstructionMem (
+module MemINS (
     input [31:0] readAddress,
     output reg [31:0] Instruccion
 );
     
-reg [31:0] INS [0:31];
+reg [7:0] INS [0:255];
  
 always @(*) begin
-    // Asegurar que la dirección no exceda el tamaño de la memoria
-    if (readAddress < 32) begin
-        Instruccion = INS[readAddress];
-    end 
-    else begin
-        // Manejar un error o tomar alguna acción predeterminada
-        Instruccion = 32'b0;
-    end
+    Instruccion = {INS[readAddress], INS[readAddress + 1], INS[readAddress + 2], INS[readAddress + 3]};
 end
 
 endmodule

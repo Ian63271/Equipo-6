@@ -59,7 +59,7 @@ PC pCounter(
 //     .muxOut(mux4ToPc)
 // );
 
-InstructionMem Minstrucciones(
+MemINS Minstrucciones(
     .readAddress(PcToInsMem),
     .Instruccion(instruccion) //conectado al instruccion del DPTR??
 );
@@ -135,6 +135,10 @@ ALU ALUins (
 //     .DataRead(C5)
 // );
 
+
+initial begin
+       $readmemb("output.txt",Minstrucciones.INS);
+end
 
  always @(*) begin  //mux1 que recibe instruccion de [15:11]
     case(regdst)    // de control unit al mux1
