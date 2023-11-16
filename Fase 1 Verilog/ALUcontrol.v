@@ -6,7 +6,7 @@ module ALUControl (
 
 
 always @(*) begin
-    if (ALUOp == 2'b10) begin
+    if (ALUOp == 2'b10) begin //Dependiendo del function que reciba de la instruccion es lo que saldra, esto se envia la ALU
         case (FuncIn)
             6'b100000:
                 ALUin = 4'b0010;

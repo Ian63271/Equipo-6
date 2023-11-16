@@ -8,7 +8,7 @@ module MemRAM (
     
 reg [31:0] RAM [0:255];
  
-always @(*) begin
+always @(*) begin //Memoria de datos, se puede deshabilitar leer y escribir
     if (rEn == 1'b1) begin
         RAM[Adress] = DataWrite;
     end 
@@ -17,7 +17,7 @@ always @(*) begin
         DataRead = RAM[Adress];
     end
 
-    if (wEn == rEn) begin
+    if (wEn == rEn) begin //Si esta tanto como pare leer y escribir se desactiva la lectura de memoria.
         DataRead = 32'b0;
     end
 end

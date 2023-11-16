@@ -3,7 +3,7 @@ module PC(
     output reg[31:0] pcout
 );
 
-initial
+initial //Program counter, inciando desde 0 siempre la entrada es igual a su salida
     begin
         pcout=0;
     end

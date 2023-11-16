@@ -51,7 +51,7 @@ PC pCounter(
 
 MemINS MemInst(
     .readAddress(PcOUT),
-    .Instruccion(instruccion) //conectado al instruccion del DPTR??
+    .Instruccion(instruccion) 
 );
 
 
@@ -114,13 +114,13 @@ assign Funct = instruccion [5:0];
 
 always @(posedge clk) begin
     
-    dir <= PcOUT + 4; 
+    dir <= PcOUT + 4; //se suma 4 a la direccion, esto entrara al PC
 
 
 
 end
 
-always @(*) begin
+always @(*) begin //MUX varios del dptr
     case (memreg)
         1'b0: 
             MUX = C3;

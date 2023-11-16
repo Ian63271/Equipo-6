@@ -6,7 +6,7 @@ module ALU (
     output reg[31:0]resultado
 );
     
-always @(*) begin
+always @(*) begin //Dependiendo del codigo que reciba del ALUcontrol es la operacion que se realizara
     case (Sel)
         4'b0000:
         resultado = OP1 & OP2;
@@ -25,6 +25,6 @@ always @(*) begin
     endcase
 end
 
-assign ZF = (resultado == 0);
+assign ZF = (resultado == 0); //Zero flag que se activa (1) cuando el resultado de la ALU es 0
 
 endmodule

@@ -7,11 +7,11 @@ ProyectoFinalFase1 DUV(
     .clk(clk_TB)
 );
 
-initial begin
+initial begin //se carga las instrucciones a la memoria de datos
     $readmemb("output.txt",DUV.MemInst.INS);
 end 
 
-initial begin
+initial begin //se crea un ciclo infinito donde se alterna entre 0 y 1 el clk, asi haciendo funcionar nuestro ciclo de posedge clk
         clk_TB = 0;
         forever #100 clk_TB = ~clk_TB; // Toggle the clock every 10 time units
     end

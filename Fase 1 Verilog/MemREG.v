@@ -10,7 +10,7 @@ module MemREG (
     
 reg [31:0] REG [0:31];
 
-initial begin
+initial begin //Banco de registros precargados, mismos datos que actividad 9
     REG[5] = 32'd10;    
     REG[6] = 32'd15;
     REG[7] = 32'd20;

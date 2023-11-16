@@ -1,13 +1,13 @@
 module ControlUnit (
-    input [5:0]opcode,
-    output reg regDst,
-    output reg branch,
-    output reg MemToRead, //no se usa en esta fase
-    output reg MemToReg, // este ahora va al mux
-    output reg [1:0]ALUOp,
+    input [5:0]opcode, // lo que recibe de la instruccion
+    output reg regDst, // indica de donde se escribe en el registro
+    output reg branch, // indica si se hara un salto
+    output reg MemToRead, //no se usa en esta fase, si se lee de memoria
+    output reg MemToReg, // este ahora va al mux, si se sacara de la memoria al registro
+    output reg [1:0]ALUOp, //codigo para la alu control, esto sirve para type r, sw y lw.
     output reg MemToWrite, //no se usa en esta fase
-    output reg ALUSrc,
-    output reg RegWrite
+    output reg ALUSrc, //de donde recibe la alu su segundo operando
+    output reg RegWrite //si se escribe en el registro
     
     
 );
@@ -15,13 +15,13 @@ module ControlUnit (
 always @(*) begin //cada caso sera un tipo de instruccion diferente.
     case (opcode)
         6'b000000: begin //se usa el begin y end porque por cualquier razon no deja asignar señales de un bit sin esto.
-            MemToReg = 1'b0;
+            MemToReg = 1'b0; 
             regDst = 1'b1;
             MemToWrite = 1'b0;
             MemToRead = 1'b0;
-            branch = 1'b0;      /// que hacia branch?
+            branch = 1'b0;      /// que hacia branch? // se usa para condicionales
             ALUOp = 2'b10; 
-            ALUSrc = 1'b0; //?
+            ALUSrc = 1'b0; 
             RegWrite = 1'b1;
         end
         default: begin
