@@ -1,6 +1,6 @@
 module Adder(
     input [31:0] pcsum, // ¿Cuántos bits se supone que entran? 32?
-    output reg suma
+    output reg[31:0] suma
 );
 
 reg [3:0] sig; 

@@ -28,7 +28,7 @@ wire [31:0]C2;
 wire [31:0]C3;
 wire [3:0]C4;
 
-wire [31:0] regdst; // de control unit al mux1
+wire regdst; // de control unit al mux1
 wire branch;
 wire [1:0]ALUop;
 wire alusrc;
@@ -42,7 +42,6 @@ wire [31:0]sumToMux4;
 //wire memwrite;
 //wire memread;
 
-//00000000101001100000100000100000
 
 assign mux4and = TRZF & branch; //asignamos compuerta AND
 

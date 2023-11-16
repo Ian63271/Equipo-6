@@ -16,6 +16,7 @@ always @(*) begin //cada caso sera un tipo de instruccion diferente.
     case (opcode)
         6'b000000: begin //se usa el begin y end porque por cualquier razon no deja asignar señales de un bit sin esto.
             MemToReg = 1'b0;
+            regDst = 1'b0;
             //MemToWrite = 1'b0;
            // MemToRead = 1'b0;
             branch = 1'b0;      /// que hacia branch?
@@ -31,6 +32,7 @@ always @(*) begin //cada caso sera un tipo de instruccion diferente.
             ALUOp = 2'b00; 
             ALUSrc = 1'b0; //?
             RegWrite = 1'b0;
+            regDst = 1'b0;
         end
     endcase
 end
