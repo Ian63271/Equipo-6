@@ -18,7 +18,7 @@ initial begin //Banco de registros precargados, mismos datos que actividad 9
     REG[9] = 32'd30;
     REG[10] = 32'd35;
     REG[11] = 32'd40;
-    REG[12] = 32'd45;
+    REG[12] = 32'd1;
     REG[13] = 32'd50;
     REG[14] = 32'd55;
     REG[15] = 32'd60;

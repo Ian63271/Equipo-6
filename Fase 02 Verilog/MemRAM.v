@@ -7,13 +7,17 @@ module MemRAM (
 );
     
 reg [31:0] RAM [0:255];
+
+initial begin
+    $readmemb("memram.txt", RAM);
+end
  
 always @(*) begin //Memoria de datos, se puede deshabilitar leer y escribir
-    if (rEn == 1'b1) begin
+    if (wEn == 1'b1) begin
         RAM[Adress] = DataWrite;
     end 
 
-    if (wEn == 1'b1) begin 
+    if (rEn == 1'b1) begin 
         DataRead = RAM[Adress];
     end
 

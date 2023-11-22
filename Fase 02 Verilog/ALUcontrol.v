@@ -10,7 +10,7 @@ always @(*) begin
         2'b00:
             ALUin = 4'b0010;
         2'b01:
-            ALUin = 4'b0010;
+            ALUin = 4'b0110;
         2'b10:
             case (FuncIn)
                 6'b100000:

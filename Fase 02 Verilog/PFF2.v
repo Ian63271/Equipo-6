@@ -125,14 +125,13 @@ assign Inst = instruccion [15:0];
 always @(posedge clk) begin
     
     sum4pcout <= PcOUT + 4; //se suma 4 a la direccion, esto entrara al PC
-    
+    ANDpcmux = branch & TRZF;
 end
 
 always @(*) begin //MUX varios del dptr
     
     BitShiftInst <= SEInst << 2; // bitshift a la izq en la instruccion ya extendida a 32 bits.
-    brALU <= sum4pcout + SEInst;
-    ANDpcmux <= branch & TRZF;
+    brALU <= sum4pcout + BitShiftInst;
 
     case (memreg)
         1'b0: 
@@ -159,7 +158,7 @@ always @(*) begin //MUX varios del dptr
         1'b0: 
             dir = sum4pcout;
         default: 
-            dir = brALU;
+            dir = sum4pcout + 4;
         endcase
 end
 

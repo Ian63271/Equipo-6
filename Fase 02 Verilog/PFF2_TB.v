@@ -9,6 +9,7 @@ ProyectoFinalFase2 DUV(
 
 initial begin //se carga las instrucciones a la memoria de datos
     $readmemb("output.txt",DUV.MemInst.INS);
+    $readmemb("memram.txt",DUV.Mem.RAM);
 end 
 
 initial begin //se crea un ciclo infinito donde se alterna entre 0 y 1 el clk, asi haciendo funcionar nuestro ciclo de posedge clk
