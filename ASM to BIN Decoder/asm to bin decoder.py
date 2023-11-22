@@ -1,21 +1,8 @@
 import textwrap
 
 # Diccionarios para opcode y function. 
-opcode = {'add' : '000000', # Type R
-          'sub' : '000000', 
-          'and' : '000000' , 
-          'or' : '000000', 
-          'slt' : '000000',
-          'nop' : '00000000000000000000000000000000',
-          'addi' : '001000', # Type I
-          'andi' : '001100',
-          'ori' : '001101',
-          'slti' : '001010',
-          'sw' : '101011',
-          'lw' : '100011', 
-          'beq' : '000100',
-          'bne' : '000101',
-          'bgtz' : '000111',
+opcode = {'add' : '000000', 'sub' : '000000', 'and' : '000000' , 'or' : '000000', 'slt' : '000000', 'nop' : '00000000000000000000000000000000', # Type R
+          'addi' : '001000',  'andi' : '001100', 'ori' : '001101', 'slti' : '001010', 'sw' : '101011', 'lw' : '100011', 'beq' : '000100', 'bne' : '000101', 'bgtz' : '000111', # Type I
           'j' : '000010'} # Type J
 type = {'000000' : 'r', # Type R 
         '001000' : 'i',  '001100' : 'i',  '001101' : 'i',  '001010' : 'i',  '101011' : 'i',  '100011' : 'i',  '000100' : 'i', '000101' : 'i', '000111' : 'i', # Type I
@@ -53,12 +40,21 @@ with open('input.txt', 'r') as f: #Se abre el archivo 'input.txt' en modo 'r' (r
             
             res[3] = res[3].replace('#','')
 
-            instruccion  += opcode[res[0]] + bin(int(res[2])).replace('0b','').zfill(5) + bin(int(res[1])).replace('0b','').zfill(5) + bin(int(res[3])).replace('0b','').zfill(16) + "\n"
+            instruccion  += opcode[res[0]] + bin(int(res[2])).replace('0b','').zfill(5) + bin(int(res[1])).replace('0b','').zfill(5) 
+            if res[3][0] == '-': # Si la parte instantanea es negativa.
+                res[3] = (~int(res[3]) ^ 0b1111111111111111)
+                instruccion += bin(int(res[3])).replace('0b','').zfill(len(str(res[3])) - 1).rjust(16,'1') + "\n"
+            else:
+                instruccion += bin(int(res[3])).replace('0b','').zfill(16) + "\n"
 
         elif type[opcode[res[0]]] == "j": # Type J
             res[1] = res[1].replace('#','')
-            
-            instruccion  += opcode[res[0]] + bin(int(res[1])).replace('0b','').zfill(26) + "\n"
+            instruccion  += opcode[res[0]]
+            if res[1][0] == '-': # Si el salto es negativo
+                res[1] = (~int(res[1]) ^ 0b11111111111111111111111111)
+                instruccion += bin(int(res[1])).replace('0b','').zfill(len(str(res[1])) - 1).rjust(26,'1') + "\n"
+            else:                
+                instruccion += bin(int(res[1])).replace('0b','').zfill(26) + "\n"
 
 dividido = textwrap.wrap(instruccion, width=8) # Se divide la cadena cada 8 caracteres y se guarda en un vector llamado 'dividido'.
 truncado = '\n'.join(dividido) # Se une todos los elementos del vector con un salto de linea (\n) entre cada elemento, esta cadena se guarda como 'truncado'.
