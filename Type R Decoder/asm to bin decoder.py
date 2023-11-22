@@ -13,9 +13,14 @@ opcode = {'add' : '000000', # Type R
           'slti' : '001010',
           'sw' : '101011',
           'lw' : '100011', 
-          'beq' : '000100'} 
-function = {'add': '100000', 'sub': '100010', 'and': '100100' , 'or': '100101', 'slt':'101010'}
-type = {'000000' : 'r', '001000' : 'i',  '001100' : 'i',  '001101' : 'i',  '001010' : 'i',  '101011' : 'i',  '100011' : 'i',  '000100' : 'i'}
+          'beq' : '000100',
+          'bne' : '000101',
+          'bgtz' : '000111',
+          'j' : '000010'} # Type J
+type = {'000000' : 'r', # Type R 
+        '001000' : 'i',  '001100' : 'i',  '001101' : 'i',  '001010' : 'i',  '101011' : 'i',  '100011' : 'i',  '000100' : 'i', '000101' : 'i', '000111' : 'i', # Type I
+        '000010' : 'j'} # Type J
+function = {'add': '100000', 'sub': '100010', 'and': '100100' , 'or': '100101', 'slt':'101010'} # Solo se usa en Type R
 
 with open('input.txt', 'r') as f: #Se abre el archivo 'input.txt' en modo 'r' (read) como f.
     instruccion = ""
@@ -50,6 +55,10 @@ with open('input.txt', 'r') as f: #Se abre el archivo 'input.txt' en modo 'r' (r
 
             instruccion  += opcode[res[0]] + bin(int(res[2])).replace('0b','').zfill(5) + bin(int(res[1])).replace('0b','').zfill(5) + bin(int(res[3])).replace('0b','').zfill(16) + "\n"
 
+        elif type[opcode[res[0]]] == "j": # Type J
+            res[1] = res[1].replace('#','')
+            
+            instruccion  += opcode[res[0]] + bin(int(res[1])).replace('0b','').zfill(26) + "\n"
 
 dividido = textwrap.wrap(instruccion, width=8) # Se divide la cadena cada 8 caracteres y se guarda en un vector llamado 'dividido'.
 truncado = '\n'.join(dividido) # Se une todos los elementos del vector con un salto de linea (\n) entre cada elemento, esta cadena se guarda como 'truncado'.
